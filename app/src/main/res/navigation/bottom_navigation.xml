@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation.xml"
+    app:startDestination="@id/bn_first">
+
+    <fragment
+        android:id="@+id/bn_first"
+        android:name="com.dog.breed.views.fragments.FirstFragment"
+        android:label="FirstFragment"
+        tools:layout="@layout/first_fragment" >
+        <action
+            android:id="@+id/action_bn_first_to_bn_second"
+            app:destination="@id/bn_second" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bn_second"
+        android:name="com.dog.breed.views.fragments.SecondFragment"
+        android:label="SecondFragment"
+        tools:layout="@layout/second_fragment" >
+        <action
+            android:id="@+id/action_bn_second_to_bn_third"
+            app:destination="@id/bn_third" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bn_third"
+        android:name="com.dog.breed.views.fragments.ThirdFragment"
+        android:label="ThirdFragment"
+        tools:layout="@layout/third_fragment" />
+
+</navigation>

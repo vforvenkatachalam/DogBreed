@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">DogBreed</string>
+
+    <!--Config-->
+    <string name="base_url">https://dog.ceo/api/</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="ok">ok</string>
+
+    <!--BottomMenu-->
+    <string name="first">First</string>
+    <string name="second">Second</string>
+    <string name="third">Third</string>
+
+    <!--Fragment-->
+    <string name="first_frag">First Fragment</string>
+    <string name="second_frag">Second Fragment</string>
+    <string name="third_frag">Third Fragment</string>
+    <string name="something_wrong">Something Wrong</string>
+    <string name="environment">1</string>
+
+
+</resources>

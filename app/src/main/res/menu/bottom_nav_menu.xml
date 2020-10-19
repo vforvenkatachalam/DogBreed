@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/bn_first"
+        android:title="@string/first"
+        android:icon="@drawable/ic_assignment"/>
+    <item android:id="@+id/bn_second"
+        android:title="@string/second"
+        android:icon="@drawable/ic_backup"/>
+    <item android:id="@+id/bn_third"
+        android:title="@string/third"
+        android:icon="@drawable/ic_brightness_auto"/>
+</menu>
