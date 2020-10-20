@@ -9,21 +9,13 @@
         android:id="@+id/bn_first"
         android:name="com.dog.breed.views.fragments.FirstFragment"
         android:label="FirstFragment"
-        tools:layout="@layout/first_fragment" >
-        <action
-            android:id="@+id/action_bn_first_to_bn_second"
-            app:destination="@id/bn_second" />
-    </fragment>
+        tools:layout="@layout/first_fragment" />
 
     <fragment
         android:id="@+id/bn_second"
         android:name="com.dog.breed.views.fragments.SecondFragment"
         android:label="SecondFragment"
-        tools:layout="@layout/second_fragment" >
-        <action
-            android:id="@+id/action_bn_second_to_bn_third"
-            app:destination="@id/bn_third" />
-    </fragment>
+        tools:layout="@layout/second_fragment" />
 
     <fragment
         android:id="@+id/bn_third"

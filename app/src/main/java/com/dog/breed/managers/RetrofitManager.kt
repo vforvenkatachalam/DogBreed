@@ -10,6 +10,7 @@ import com.dog.breed.constants.DogBreedEnv
 import com.dog.breed.managers.retrofit.*
 import com.dog.breed.managers.utils.ConnectivityInterceptor
 import com.dog.breed.models.response.BreedsApiResponse
+import com.dog.breed.models.response.RandomApiResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -64,6 +65,7 @@ class RetrofitManager(context: Context) : ContextWrapper(context) {
 
             val gson = GsonBuilder()
                 .registerTypeAdapter(BreedsApiResponse::class.java, BreedsApiResponse.BreedsApiDeserializer())
+                .registerTypeAdapter(RandomApiResponse::class.java, RandomApiResponse.RandomApiDeserializer())
                .create()
 
 
@@ -147,20 +149,6 @@ class RetrofitManager(context: Context) : ContextWrapper(context) {
 
             val gson = GsonBuilder()
                     //user
-                /*.registerTypeAdapter(UpdateProfileApiResponse::class.java, UpdateProfileApiResponse.UpdateProfileApiDeserializer())
-                .registerTypeAdapter(ChangePasswordApiResponse::class.java, ChangePasswordApiResponse.ChangePasswordApiDeserializer())
-                .registerTypeAdapter(SearchStoreApiResponse::class.java, SearchStoreApiResponse.SearchStoreApiDeserializer())
-                .registerTypeAdapter(StoreApiResponse::class.java, StoreApiResponse.StoreApiDeserializer())
-                .registerTypeAdapter(ScannedApiResponse::class.java, ScannedApiResponse.ScannedStoreApiDeserializer())
-                .registerTypeAdapter(OffersApiResponse::class.java, OffersApiResponse.OffersApiDeserializer())
-                .registerTypeAdapter(MessageApiResponse::class.java, MessageApiResponse.MessageApiDeserializer())
-                .registerTypeAdapter(IndivMessageApiResponse::class.java, IndivMessageApiResponse.IndivMessageApiDeserializer())
-                .registerTypeAdapter(HistoryApiResponse::class.java, HistoryApiResponse.HistoryApiDeserializer())
-                .registerTypeAdapter(UnfollowStoreApiResponse::class.java, UnfollowStoreApiResponse.UnfollowApiDeserializer())
-                .registerTypeAdapter(LogoutApiResponse::class.java, LogoutApiResponse.LogoutApiDeserializer())
-                .registerTypeAdapter(PurchaseOfferApiResponse::class.java, PurchaseOfferApiResponse.PurchaseOfferApiDeserializer())
-                .registerTypeAdapter(OfferApiResponse::class.java, OfferApiResponse.OfferApiDeserializer())
-                .registerTypeAdapter(SocialMediaLinksApiResponse::class.java, SocialMediaLinksApiResponse.SocialMediaLinksApiDeserializer())*/
                .create()
 
 

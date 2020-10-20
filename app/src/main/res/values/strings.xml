@@ -17,6 +17,7 @@
     <string name="third_frag">Third Fragment</string>
     <string name="something_wrong">Something Wrong</string>
     <string name="environment">1</string>
+    <string name="refresh">Refresh</string>
 
 
 </resources>
