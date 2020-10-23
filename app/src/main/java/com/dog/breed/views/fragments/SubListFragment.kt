@@ -61,9 +61,9 @@ class SubListFragment: MyBaseFragment(), BreedRecyclerAdapter.breedClickListener
         breedSubListRV.adapter = breedRecyclerAdapter
 
         breedViewModel.readAllSubBreedData.observe(viewLifecycleOwner, Observer {
-            for(temp in breedList){
-                for(i in it){
-                    if(i.subBreedName.equals(temp.breedTitle)){
+            for(i in it){
+                for(temp in breedList){
+                    if(i.subBreedName.equals(temp.breedTitle) && args.breedName.equals(i.breedName)){
                         temp.breedFav = i.favorite
                     }
                 }
