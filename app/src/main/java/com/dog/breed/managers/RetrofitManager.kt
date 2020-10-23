@@ -11,6 +11,7 @@ import com.dog.breed.managers.retrofit.*
 import com.dog.breed.managers.utils.ConnectivityInterceptor
 import com.dog.breed.models.response.BreedsApiResponse
 import com.dog.breed.models.response.RandomApiResponse
+import com.dog.breed.models.response.SubBreedsApiResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -66,6 +67,7 @@ class RetrofitManager(context: Context) : ContextWrapper(context) {
             val gson = GsonBuilder()
                 .registerTypeAdapter(BreedsApiResponse::class.java, BreedsApiResponse.BreedsApiDeserializer())
                 .registerTypeAdapter(RandomApiResponse::class.java, RandomApiResponse.RandomApiDeserializer())
+                .registerTypeAdapter(SubBreedsApiResponse::class.java, SubBreedsApiResponse.SubBreedsApiDeserializer())
                .create()
 
 

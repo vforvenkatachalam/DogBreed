@@ -19,8 +19,12 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
 
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        //bottomNav.setupWithNavController(navController)
-        NavigationUI.setupWithNavController(bottomNav,navController)
+        bottomNav.setOnNavigationItemSelectedListener {
+            if (it.itemId != bottomNav.selectedItemId)
+                NavigationUI.onNavDestinationSelected(it, navController)
+            true
+        }
+        //NavigationUI.setupWithNavController(bottomNav,navController)
 
     }
 }

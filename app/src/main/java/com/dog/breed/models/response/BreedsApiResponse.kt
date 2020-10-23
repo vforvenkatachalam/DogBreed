@@ -1,10 +1,15 @@
 package com.dog.breed.models.response
 
+import com.dog.breed.helpers.DogBreedLog
+import com.dog.breed.models.gson.BreedData
+import com.dog.breed.utils.JsonUtils
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.google.gson.JsonObject
+import org.json.JSONArray
+import org.json.JSONObject
 import java.lang.reflect.Type
+import kotlin.collections.ArrayList
 
 
 class BreedsApiResponse : BaseApiResponse(){
@@ -22,14 +27,25 @@ class BreedsApiResponse : BaseApiResponse(){
                 userApi.status = jsonObject.get("status").asString
             }
             if (jsonObject.has("message")) {
-                //userApi.message = "Data"
-                var messageObj: JsonObject? = jsonObject.get("message").asJsonObject
-                var temp:ArrayList<String> = ArrayList()
-                for(x in messageObj!!.keySet()){
-                    temp.add(x.length.toString())
-                }
 
-                //userApi.message = jsonObject.get("message").asJsonObject
+                val resObj = JSONObject(JsonUtils.toJson(jsonObject.get("message").asJsonObject))
+
+                val keys = resObj.keys()
+                val breedList: ArrayList<BreedData> = ArrayList()
+
+                while (keys.hasNext()){
+                    val key = keys.next() as String
+                    val jsonArr:JSONArray = resObj.get(key) as JSONArray
+                    //DogBreedLog.d("KEY", temp.length().toString())
+                    var subList: ArrayList<String> = ArrayList()
+                    for(i in 0 until jsonArr.length()){
+                        subList.add(jsonArr.get(i) as String)
+                        //DogBreedLog.d("KEY", jsonArr.get(i) as String)
+                    }
+
+                    breedList.add(BreedData(key, false, subList))
+                }
+                userApi.message?.addAll(breedList)
             }
 
             return userApi

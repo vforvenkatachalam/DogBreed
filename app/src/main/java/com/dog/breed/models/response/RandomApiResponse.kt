@@ -7,7 +7,7 @@ import com.google.gson.JsonObject
 import java.lang.reflect.Type
 
 class RandomApiResponse : BaseApiResponse() {
-    var message: String = ""
+    var image: String = ""
     class RandomApiDeserializer : JsonDeserializer<RandomApiResponse> {
         override fun deserialize(
             json: JsonElement?,
@@ -21,7 +21,7 @@ class RandomApiResponse : BaseApiResponse() {
                 userApi.status = jsonObject.get("status").asString
             }
             if (jsonObject.has("message")) {
-                userApi.message = jsonObject.get("message").asString
+                userApi.image = jsonObject.get("message").asString
             }
 
             return userApi

@@ -1,5 +1,7 @@
 package com.dog.breed.models.gson
 
-class BreedData {
-
-}
+class BreedData (
+    var breedTitle : String ?= null,
+    var breedFav : Boolean = false,
+    val subList : ArrayList<String> = ArrayList()
+)

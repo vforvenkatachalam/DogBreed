@@ -2,6 +2,7 @@ package com.dog.breed.models.response
 
 import com.dog.breed.models.gson.BreedData
 
-open class BaseApiResponse {
-    var status : String ?= null
-}
+open class BaseApiResponse (
+    var status : String ?= null,
+    var message : ArrayList<BreedData>? = ArrayList()
+)
