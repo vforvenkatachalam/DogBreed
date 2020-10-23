@@ -43,7 +43,7 @@ class BreedsApiResponse : BaseApiResponse(){
                         //DogBreedLog.d("KEY", jsonArr.get(i) as String)
                     }
 
-                    breedList.add(BreedData(key, false, subList))
+                    breedList.add(BreedData(key, subList.size>0, false, subList))
                 }
                 userApi.message?.addAll(breedList)
             }

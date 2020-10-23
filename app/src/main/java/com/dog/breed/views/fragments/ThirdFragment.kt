@@ -14,9 +14,10 @@ import com.dog.breed.R
 import com.dog.breed.adapters.BreedRecyclerAdapter
 import com.dog.breed.models.gson.BreedData
 import com.dog.breed.room.BreedViewModel
+import com.dog.breed.views.base.MyBaseFragment
 import kotlinx.android.synthetic.main.third_fragment.*
 
-class ThirdFragment : Fragment(), BreedRecyclerAdapter.breedClickListener {
+class ThirdFragment : MyBaseFragment(), BreedRecyclerAdapter.breedClickListener {
     private val breedViewModel: BreedViewModel by lazy {
         ViewModelProvider(this).get(BreedViewModel::class.java)
     }
@@ -41,7 +42,7 @@ class ThirdFragment : Fragment(), BreedRecyclerAdapter.breedClickListener {
         breedViewModel.readAllData.observe(viewLifecycleOwner, Observer {
             var breedData:ArrayList<BreedData> = ArrayList()
             for(i in it){
-                breedData.add(BreedData(i.name,i.favorite))
+                breedData.add(BreedData(i.name,i.hasSubList,i.favorite))
             }
             breedList.clear()
             breedList.addAll(breedData)
@@ -60,7 +61,19 @@ class ThirdFragment : Fragment(), BreedRecyclerAdapter.breedClickListener {
     }
 
     override fun onItemClicked(adapterPosition: Int, view: View) {
-        val action = ThirdFragmentDirections.actionBnThirdToSubListFromFragment()
-        view.findNavController().navigate(action)
+        if(breedList.get(adapterPosition).hasSubList) {
+            val action = ThirdFragmentDirections.actionBnThirdToSubListFromFragment(breedList.get(adapterPosition).breedTitle!!)
+            view.findNavController().navigate(action)
+        }else {
+            showSnackbar("No Items Available in this Breed.!")
+        }
+    }
+
+    override fun onErrorCalled(it: String?) {
+
+    }
+
+    override fun initObservers() {
+
     }
 }

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Breed::class], version = 1, exportSchema = false)
+@Database(entities = [Breed::class, SubBreed::class], version = 1, exportSchema = false)
 abstract class BreedDatabase: RoomDatabase() {
 
     abstract fun breedDao(): BreedDao

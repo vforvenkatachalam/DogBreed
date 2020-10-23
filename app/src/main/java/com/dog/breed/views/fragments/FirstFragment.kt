@@ -60,6 +60,16 @@ class FirstFragment : MyBaseFragment(), BreedRecyclerAdapter.breedClickListener 
     override fun initObservers() {
         viewModel.dogBreeds.observe(this, Observer {
             breedList.addAll(it)
+            breedViewModel.readAllData.observe(viewLifecycleOwner, Observer {
+                for(temp in breedList){
+                    for(i in it){
+                        if(i.name.equals(temp.breedTitle)) {
+                            temp.breedFav = i.favorite
+                        }
+                    }
+                }
+                breedRecyclerAdapter.notifyDataSetChanged()
+            })
             breedRecyclerAdapter.notifyDataSetChanged()
         })
     }
@@ -67,8 +77,11 @@ class FirstFragment : MyBaseFragment(), BreedRecyclerAdapter.breedClickListener 
     override fun onFavClicked(adapterPosition: Int) {
         //showSnackbar(breedList.get(adapterPosition).breedTitle!!)
         if(breedList.get(adapterPosition).breedFav){
-
+            breedList.get(adapterPosition).breedFav = false
+            breedRecyclerAdapter.notifyDataSetChanged()
         }else {
+            breedList.get(adapterPosition).breedFav = true
+            breedRecyclerAdapter.notifyDataSetChanged()
             breedViewModel.addBreed(Breed(
                 breedList.get(adapterPosition).breedTitle!!,
                 breedList.get(adapterPosition).subList.size>0,
@@ -79,7 +92,9 @@ class FirstFragment : MyBaseFragment(), BreedRecyclerAdapter.breedClickListener 
 
     override fun onItemClicked(adapterPosition: Int, view: View) {
         if(breedList.get(adapterPosition).subList.size>0){
-            val action = FirstFragmentDirections.actionBnFirstToSubListFragment(JsonUtils.toJson(breedList.get(adapterPosition).subList))
+            val action = FirstFragmentDirections.actionBnFirstToSubListFragment(JsonUtils.toJson(breedList.get(adapterPosition).subList),
+                breedList.get(adapterPosition).breedTitle!!
+            )
             view.findNavController().navigate(action)
         } else {
             showSnackbar("No Items Available in this Breed.!")

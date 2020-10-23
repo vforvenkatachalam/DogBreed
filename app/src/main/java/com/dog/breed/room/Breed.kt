@@ -8,5 +8,5 @@ data class Breed (
     @PrimaryKey()
     val name:String,
     val hasSubList:Boolean,
-    val favorite:Boolean
+    var favorite:Boolean
 )

@@ -49,15 +49,27 @@ class SubListFragment: MyBaseFragment(), BreedRecyclerAdapter.breedClickListener
     private fun initViews() {
         //viewModel.getBreedSubList(args.breedName)
 
+
         var list = JsonUtils.parseJsonToList<String>(args.breedList)
         //DogBreedLog.d("TEST", JsonUtils.toJson(list))
         for(i in list){
-            breedList.add(BreedData(i,))
+            breedList.add(BreedData(i))
         }
         breedRecyclerAdapter = BreedRecyclerAdapter(context, breedList, this)
         breedSubListRV.layoutManager = LinearLayoutManager(activity)
         breedSubListRV.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
         breedSubListRV.adapter = breedRecyclerAdapter
+
+        breedViewModel.readAllSubBreedData.observe(viewLifecycleOwner, Observer {
+            for(temp in breedList){
+                for(i in it){
+                    if(i.subBreedName.equals(temp.breedTitle)){
+                        temp.breedFav = i.favorite
+                    }
+                }
+            }
+            breedRecyclerAdapter.notifyDataSetChanged()
+        })
     }
 
     override fun initObservers() {
@@ -79,14 +91,19 @@ class SubListFragment: MyBaseFragment(), BreedRecyclerAdapter.breedClickListener
 
     override fun onFavClicked(adapterPosition: Int) {
         if(breedList.get(adapterPosition).breedFav){
+            breedList.get(adapterPosition).breedFav = false
+            breedRecyclerAdapter.notifyDataSetChanged()
             showSnackbar("Marked as UnFavorite")
+            breedViewModel.deleteBySubBreed(breedList.get(adapterPosition).breedTitle!!)
         }else {
-            /*breedViewModel.addSubBreed(SubBreed(
+            breedList.get(adapterPosition).breedFav = true
+            breedRecyclerAdapter.notifyDataSetChanged()
+            breedViewModel.addSubBreed(SubBreed(
                 breedList.get(adapterPosition).breedTitle!!,
-                breedList.get(adapterPosition).breedTitle!!,
+                args.breedName,
             false,
-            false))
-            showSnackbar("Added to Favorites.!")*/
+            true))
+            showSnackbar("Added to Favorites.!")
         }
     }
 

@@ -40,15 +40,21 @@
         <argument
             android:name="breedList"
             app:argType="string" />
+        <argument
+            android:name="breedName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/subListFromDBFragment"
-        android:name="com.dog.breed.SubListFromDBFragment"
+        android:name="com.dog.breed.views.fragments.SubListFromDBFragment"
         android:label="fragment_sub_list_from"
         tools:layout="@layout/fragment_sub_list_from_db" >
         <action
             android:id="@+id/action_subListFromFragment_to_bn_third"
             app:destination="@id/bn_third" />
+        <argument
+            android:name="breedName"
+            app:argType="string" />
     </fragment>
 
 </navigation>
